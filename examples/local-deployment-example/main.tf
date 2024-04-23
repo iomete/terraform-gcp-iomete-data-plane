@@ -23,12 +23,3 @@ module "data-plane-gcp" {
   driver_min_node_count_per_pool = 1
   executor_min_node_count_per_pool = 1
 }
-
-#################
-# Outputs
-#################
-
-#output "cluster_name" {
-#  description = "Kubernetes cluster name"
-#  value       = module.data-plane-aws.cluster_name
-#}

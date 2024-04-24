@@ -92,7 +92,7 @@ resource "helm_release" "iomete-data-plane-base" {
 
   set {
     name  = "serviceAccount.annotations.iam\\.gke\\.io/gcp-service-account"
-    value = "my-lakehouse-cluster@iom-prj1.iam.gserviceaccount.com"
+    value = google_service_account.lakehouse_service_account.email
   }
 
   depends_on = [

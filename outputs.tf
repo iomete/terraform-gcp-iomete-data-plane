@@ -21,6 +21,6 @@ output "gke_cluster_id" {
 
 # gcloud container clusters get-credentials my-lakehouse-cluster --zone us-central1-c --project iom-prj1
 output "gke_connection_command" {
-  description = "The IP address of the cluster master."
+  description = "gcloud command to connect to the GKE cluster."
   value       = "gcloud container clusters get-credentials ${google_container_cluster.primary.name} --zone ${google_container_cluster.primary.location} --project ${var.project_id}"
 }

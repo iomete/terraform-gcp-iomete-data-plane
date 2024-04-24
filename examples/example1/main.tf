@@ -12,7 +12,7 @@ module "iomete-data-plane" {
   # The region where the cluster and Cloud storage will be hosted
   location = "us-central1"
 
-  # The zone where the cluster will be hosted?
+  # The zone where the cluster will be hosted
   zone = "us-central1-c"
 
   # Create a Cloud Storage bucket inside the GCP the project (pay attention to the location of the bucket, it should be the same as the location of the cluster) and provide the name here

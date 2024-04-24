@@ -44,7 +44,7 @@ Required variables:
 | **zone**                  | The zone where the cluster will be hosted.                                                                                                                                                                                                                                      | us-central1-c                                                                                           |
 | **lakehouse_bucket_name** | An empty Google Cloud Storage bucket to store the data for the lakehouse. Go to your project in the Google Cloud Console, navigate to Cloud Storage and create a new bucket. Pay attention to the location of the bucket, it should be the same as the location of the cluster. | Create a bucket in the GCP project. Make sure that bucket is located in the same region as the cluster. |
 
-For all available variables, see the [variables.tf](variables.tf) file.
+For all available variables, see the [variables.tf](https://github.com/iomete/terraform-gcp-iomete-data-plane/blob/main/variables.tf) file.
 
 ### Run terraform
 

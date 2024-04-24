@@ -23,6 +23,8 @@ resource "google_container_cluster" "primary" {
   location   = var.zone
   network    = google_compute_network.vpc_network.name
 
+  deletion_protection = false
+
   initial_node_count = 1
 
   node_config {

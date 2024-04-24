@@ -32,6 +32,10 @@ module "iomete-data-plane" {
   zone                  = "us-central1-c" # Cluster installed exact zone
   lakehouse_bucket_name = "<lakehouse-bucket-name>"
 }
+
+output "gke_connection_command" {
+  value = module.iomete-data-plane.gke_connection_command
+}
 ```
 
 Required variables:
@@ -53,7 +57,7 @@ create the data-plane infrastructure:
 
 ```shell
 # Initialize Terraform
-terraform init --upgrade
+terraform init -upgrade
 
 # Create a plan to see what resources will be created
 terraform plan

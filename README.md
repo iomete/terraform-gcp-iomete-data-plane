@@ -24,7 +24,7 @@ Create a new folder and create a file (e.g. `main.tf`) with the following conten
 ```hcl
 module "iomete-data-plane" {
   source  = "iomete/iomete-data-plane/gcp"
-  version = "1.0.0"
+  version = "~> 1.1.0"
 
   cluster_name          = "my-lakehouse"
   project_id            = "<gcp-project-id>"

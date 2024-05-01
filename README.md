@@ -18,8 +18,7 @@ Make sure you have the following tools installed on your machine:
 
 Create a new folder and create a file (e.g. `main.tf`) with the following content:
 
-> **_Important:_**  Update the `cluster_name`, `project_id`, `region`, `zone`, and `lakehouse_bucket_name` values
-> according to your configuration.
+> **_Important:_**  Update the `project`, `region`, `zone`, `cluster_name` and `lakehouse_bucket_name` values according to your configuration.
 
 ```hcl
 provider "google" {

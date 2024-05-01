@@ -3,21 +3,6 @@ variable "cluster_name" {
   description = "A unique cluster name for IOMETE. It should be unique within GCP project and compatible with GCP naming conventions (See: https://cloud.google.com/compute/docs/naming-resources)."
 }
 
-variable "project_id" {
-  type        = string
-  description = "Your Google Cloud project ID. This is a unique identifier for your project and can be found in the Google Cloud Console. Recommended to create a new project for IOMETE."
-}
-
-variable "location" {
-  type        = string
-  description = "The region where the cluster and Cloud storage will be hosted"
-}
-
-variable "zone" {
-  type        = string
-  description = "The zone where the cluster will be hosted"
-}
-
 variable "lakehouse_storage_bucket_name" {
   type        = string
   description = "An empty Google Cloud Storage bucket to store the data for the lakehouse. Go to your project in the Google Cloud Console, navigate to Cloud Storage and create a new bucket. Pay attention to the location of the bucket, it should be the same as the location of the cluster."

@@ -17,10 +17,11 @@ locals {
 
 resource "google_container_cluster" "primary" {
   provider   = google-beta
-  project    = var.project_id
+  project    = data.google_client_config.default.project
+
   depends_on = [google_project_service.enabled_apis]
   name       = var.cluster_name
-  location   = var.zone
+  location   = data.google_client_config.default.zone
   network    = google_compute_network.vpc_network.name
 
   deletion_protection = false
@@ -74,7 +75,7 @@ resource "google_container_cluster" "primary" {
   }
 
   workload_identity_config {
-    workload_pool = "${var.project_id}.svc.id.goog"
+    workload_pool = "${data.google_client_config.default.project}.svc.id.goog"
   }
 
   release_channel {
@@ -103,7 +104,7 @@ resource "google_compute_subnetwork" "subnet" {
   name          = "${var.cluster_name}-sn"
   network       = google_compute_network.vpc_network.id
   ip_cidr_range = "10.0.0.0/16"
-  region        = var.location
+  region        = data.google_client_config.default.region
 }
 
 resource "google_compute_router" "router" {

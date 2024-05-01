@@ -31,9 +31,9 @@ resource "kubernetes_secret" "data-plane-secret" {
   data = {
     "settings" = jsonencode({
       cloud   = "gcp",
-      project = var.project_id,
-      region  = var.location,
-      zone    = var.zone,
+      project = data.google_client_config.default.project,
+      region  = data.google_client_config.default.region,
+      zone    = data.google_client_config.default.zone,
 
       cluster_name          = var.cluster_name,
       storage_configuration = {

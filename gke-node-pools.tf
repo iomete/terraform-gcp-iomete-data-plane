@@ -43,7 +43,7 @@ resource "google_container_node_pool" "driver" {
 
   name           = each.key
 
-  node_locations = [var.zone]
+  node_locations = [data.google_client_config.default.zone]
   cluster        = google_container_cluster.primary.id
   node_count     = var.driver_min_node_count_per_pool
 
@@ -101,7 +101,7 @@ resource "google_container_node_pool" "executor" {
 
   name           = each.key
 
-  node_locations = [var.zone]
+  node_locations = [data.google_client_config.default.zone]
   cluster        = google_container_cluster.primary.id
   node_count     = var.executor_min_node_count_per_pool
 

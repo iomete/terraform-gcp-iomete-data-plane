@@ -9,7 +9,7 @@ resource "google_service_account_key" "lakehouse_service_account_key" {
 }
 
 resource "google_project_iam_member" "container_admin" {
-  project = var.project_id
+  project = data.google_client_config.default.project
   role    = "roles/container.admin"
   member  = "serviceAccount:${google_service_account.lakehouse_service_account.email}"
 }
@@ -19,7 +19,7 @@ resource "google_service_account_iam_binding" "workload_identity" {
   service_account_id = google_service_account.lakehouse_service_account.name
   role               = "roles/iam.workloadIdentityUser"
   members            = [
-    "serviceAccount:${var.project_id}.svc.id.goog[iomete-system/lakehouse-service-account]",
+    "serviceAccount:${data.google_client_config.default.project}.svc.id.goog[iomete-system/lakehouse-service-account]",
   ]
 }
 

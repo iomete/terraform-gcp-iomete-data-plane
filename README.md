@@ -18,18 +18,26 @@ Make sure you have the following tools installed on your machine:
 
 Create a new folder and create a file (e.g. `main.tf`) with the following content:
 
-> **_Important:_**  Update the `cluster_name`, `project_id`, `location`, `zone`, and `lakehouse_bucket_name` values
+> **_Important:_**  Update the `cluster_name`, `project_id`, `region`, `zone`, and `lakehouse_bucket_name` values
 > according to your configuration.
 
 ```hcl
+provider "google" {
+  # Google Cloud project ID. This is a unique identifier for your project and can be found in the Google Cloud Console. Recommended to create a new project for IOMETE.
+  project = "<gcp-project-id>"
+  # The region where the cluster and Cloud storage will be hosted
+  region  = "us-central1"    # Cluster installed region
+  # The zone where the cluster will be hosted (e.g. us-central1-c)
+  zone    = "us-central1-c" # Cluster installed exact zone
+}
+
 module "iomete-data-plane" {
   source  = "iomete/iomete-data-plane/gcp"
   version = "~> 1.1.0"
 
+  # A user provided cluster name for IOMETE. It should be unique within GCP project and compatible with GCP naming conventions (See: https://cloud.google.com/compute/docs/naming-resources)
   cluster_name          = "my-lakehouse"
-  project_id            = "<gcp-project-id>"
-  location              = "us-central1"    # Cluster installed region
-  zone                  = "us-central1-c" # Cluster installed exact zone
+  # Create a Cloud Storage bucket inside the GCP the project (pay attention to the location of the bucket, it should be the same as the location of the cluster) and provide the name here
   lakehouse_bucket_name = "<lakehouse-bucket-name>"
 }
 
@@ -43,9 +51,6 @@ Required variables:
 | Name                      | Description                                                                                                                                                                                                                                                                     | Example                                                                                                 |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
 | **cluster_name**          | A user provided unique cluster name for IOMETE. It should be unique within GCP project and compatible with GCP naming conventions (See: https://cloud.google.com/compute/docs/naming-resources).                                                                                | my-lakehouse                                                                                            |
-| **project_id**            | Your Google Cloud project ID. This is a unique identifier for your project and can be found in the Google Cloud Console. Recommended to create a new project for IOMETE.                                                                                                        | Create GCP project and copy its id.                                                                     |
-| **location**              | The region where the cluster and Cloud storage will be hosted.                                                                                                                                                                                                                  | us-central1                                                                                             |
-| **zone**                  | The zone where the cluster will be hosted.                                                                                                                                                                                                                                      | us-central1-c                                                                                           |
 | **lakehouse_bucket_name** | An empty Google Cloud Storage bucket to store the data for the lakehouse. Go to your project in the Google Cloud Console, navigate to Cloud Storage and create a new bucket. Pay attention to the location of the bucket, it should be the same as the location of the cluster. | Create a bucket in the GCP project. Make sure that bucket is located in the same region as the cluster. |
 
 For all available variables, see the [variables.tf](https://github.com/iomete/terraform-gcp-iomete-data-plane/blob/main/variables.tf) file.

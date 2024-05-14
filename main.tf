@@ -1,7 +1,7 @@
 data "google_client_config" "default" {}
 
 locals {
-  module_version   = "1.0.1"
+  module_version   = "1.1.3"
   api_services_map = {
     "compute.googleapis.com" = true,
     "iam.googleapis.com" = true,
